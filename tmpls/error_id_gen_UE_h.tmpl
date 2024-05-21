@@ -1,0 +1,16 @@
+
+ %ALL_HEADERS_FIELD_CODE%
+//CMD
+UCLASS()
+class FY_API UErrorCodeId : public UObject
+{
+ GENERATED_BODY()
+ public:
+TMap<int, FString> ErrorCodeMap =
+  {
+     %MSG_ID_BODY_FIELD_CODE%
+   };
+
+     %E_MSG_ID_BODY_FIELD_CODE%
+};
+// ===================================================================

@@ -1,0 +1,16 @@
+
+ %ALL_HEADERS_FIELD_CODE%
+//CMD
+UCLASS()
+class FY_API UResponseMapCMD : public UObject
+{
+ GENERATED_BODY()
+ public:
+TMap<int, TSubclassOf<UResponse>> ResponseMapCMD =
+  {
+     %MSG_ID_BODY_FIELD_CODE%
+   };
+
+     %E_MSG_ID_BODY_FIELD_CODE%
+};
+// ===================================================================

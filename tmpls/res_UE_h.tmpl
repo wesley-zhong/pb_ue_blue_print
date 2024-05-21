@@ -1,0 +1,11 @@
+
+UCLASS(Blueprintable)
+class U%CLASS_NAME%  : public UResponse {
+GENERATED_BODY()
+public:
+  void Unpack(const std::string& data) override;
+  virtual void Generic_GetDataStruct(void* OutData);
+%FIELD_CODE%
+protected:
+  F%CLASS_NAME%Struct Data;
+};

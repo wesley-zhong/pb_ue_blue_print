@@ -1,0 +1,13 @@
+void U%CLASS_NAME%::Unpack(const std::string& data){
+  %CLASS_NAME% pbMessage;
+  pbMessage.ParseFromString(data);
+  Data.UnPack(pbMessage);
+}
+
+void U%CLASS_NAME%::Generic_GetDataStruct(void* OutData){
+const UScriptStruct* StructType = F%CLASS_NAME%Struct::StaticStruct();
+if (StructType != nullptr)
+{
+StructType->CopyScriptStruct(OutData, &Data);
+}
+}

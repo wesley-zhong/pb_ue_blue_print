@@ -1,0 +1,9 @@
+
+USTRUCT(BlueprintType)
+struct F%CLASS_NAME%  {
+GENERATED_USTRUCT_BODY()
+public:
+  void FromPB(const %CLASS_NAME%& pbMessage);
+  void ToPB(%CLASS_NAME%& pbMessage) const;
+%FIELD_CODE%
+};

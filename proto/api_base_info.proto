@@ -1,0 +1,117 @@
+// 玩家信息相关协议
+
+syntax = "proto3";
+
+option go_package = "x-backends/protos/game/frontend";
+
+// 修改玩家信息(用于测试)
+message UpdateBaseInfoReq {
+  string new_name = 1; // 新的昵称
+  int32 new_head_id = 2; // 新的头像
+  string new_module_id = 3; // 新的模型
+}
+
+
+message UpdateBaseInfoResp {}
+
+// 修改签名协议
+message UpdateSignReq {
+  string new_sign = 1; // 新签名
+}
+
+message UpdateSignResp {}
+
+// 修改玩家角色(模型)
+message UpdateModelIDReq {
+  string new_model_id = 1; // 新的角色(模型)
+}
+
+message UpdateModelIDResp {}
+
+message Record {
+  int32 role_type = 1; // 阵容
+  bool is_win = 2; // 最终胜负
+  string model_id = 3; // 该场使用的模型
+  int64 end_time = 4; // 结束时间
+}
+
+// 玩家战绩
+message PlayerStat {
+  int64 human_wins = 1; // 好人胜利场次
+  int64 wolf_wins = 2; // 狼人胜利场次
+  int64 human_plays = 3; // 好人总场次
+  int64 wolf_plays = 4; // 狼人总场次
+  repeated Record records = 5; // 近期战绩
+}
+
+// 读取玩家信息
+message ReadBaseInfoReq {
+  int64 uid = 1; // 其他玩家的 UID， 如果为 0， 读取自己的个人信息
+  int32 stats_limit = 2; // 请求战绩长度
+}
+
+message BaseInfo {
+  string name = 1; // 玩家昵称
+  int32 head_id = 2; // 头像 id
+  string model_id = 3; // 模型 id
+  int64 likes = 4; //点赞数
+  string signs = 5; // 玩家签名
+  int64 exp = 6; // 玩家经验
+  int64 level = 7; // 玩家等级
+  PlayerStat player_stat = 8; // 玩家战绩
+  string avatar = 9; // 第三方平台头像链接
+  string steam_id = 10; // 第三方平台 id
+  bool is_unnamed = 11; // 是否匿名
+  int64 stamps = 12; // 点踩数
+}
+
+message ReadBaseInfoResp {
+  BaseInfo base_info = 1;
+}
+
+// 玩家精简信息
+message SimpleBaseInfo {
+  int64 uid = 1;
+  int64 level = 2;
+  string avatar = 3;
+  string steam_id = 4; // 第三方平台 id
+  bool is_unnamed = 5; // 是否匿名
+}
+
+// 读取一组玩家的精简信息
+message ReadSimpleBaseInfosReq {
+  repeated int64 uids = 1; // 一组玩家的uid
+}
+
+message ReadSimpleBaseInfosResp {
+  repeated SimpleBaseInfo simpleBaseInfo = 1; // 精简的玩家信息
+}
+
+// only for test
+message ReadOtherBaseInfoReq {
+  int64 uid = 1;
+}
+
+message ReadOtherBaseInfoResp {
+  string name = 1; // 玩家昵称
+  int64 likes = 2; //点赞数
+  bool is_unnamed = 3; // 玩家是否匿名
+}
+
+// only for player agent test
+message UpdateOtherBaseInfoReq {
+  int64 uid = 1;
+  int32 likes = 2;
+}
+
+message UpdateOtherBaseInfoResp {}
+
+// 更新玩家匿名设置
+message UpdateUnnamedSettingsReq {
+  bool is_unnamed = 1;
+}
+
+message UpdateUnnamedSettingsResp {}
+
+// 客户端上传日志推送
+message UploadClientLogPush {}

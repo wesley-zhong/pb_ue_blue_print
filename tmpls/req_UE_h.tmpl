@@ -1,0 +1,9 @@
+
+UCLASS(Blueprintable)
+class U%CLASS_NAME% : public URequest{
+GENERATED_BODY()
+ public:
+  virtual void Pack() override;
+  virtual int GetCmd() override;
+%FIELD_CODE%
+};

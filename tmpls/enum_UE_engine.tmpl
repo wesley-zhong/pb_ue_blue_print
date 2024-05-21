@@ -1,0 +1,8 @@
+
+UENUM(BlueprintType)
+enum class E{{pb_message.className}} : uint8
+{
+ {% for attr in pb_message.attributes %}
+   {{attr.name}}={{attr.value}},//--{{attr.comment}}
+  {% endfor %}
+};
